@@ -52,7 +52,12 @@ def proceso(nombre, env, memoria, cpu, llegada, cantidad_instrucciones, cantidad
             #------------------------------------------------------------------RUNNING------------------------------------------------------------------
             # Ya tiene procesador
             print('%s proceso en estado RUNNING fue atendido en tiempo -> %d cantidad ram %d, Instrucciones pendientes %d ram disponible %d' % (nombre, env.now, cantidad_ram, cantidad_instrucciones, memoria.level))
-
+        select = random.randint(1,2)
+        if(select ==1 and cantidad_instrucciones>0): #Verifica que el random de 1 y que si hayan cantidad de instrucciones disponibles
+            yield env.timeout(1) #Simula un ciclo de reloj del procesador
+            #------------------------------------------------------------------WAITING------------------------------------------------------------------
+            print('%s proceso en cola WAITING tiempo -> %d cantidad instrucciones pendientes %d' % (nombre, env.now, cantidad_instrucciones))
+            yield env.timeout(1) #Simula un ciclo de reloj del procesador
 
     # Cuando ya finaliza devuelve la memoria utilizada
     yield memoria.put(cantidad_ram)
