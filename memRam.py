@@ -74,10 +74,10 @@ def proceso(nombre, env, memoria, cpu, llegada, cantidad_instrucciones, cantidad
 random.seed(10)
 env = simpy.Environment()  # crear ambiente de simulacion
 initial_ram = simpy.Container(env, 100, init=100)  # crea el container de la ram
-initial_cpu = simpy.Resource(env, capacity=1)  # se crea el procesador con capacidad establecida
-initial_procesos = 25  # cantidad de procesos a generar
+initial_cpu = simpy.Resource(env, capacity=2)  # se crea el procesador con capacidad establecida
+initial_procesos = 150  # cantidad de procesos a generar
 tiempo_total = 0 #Control para saber el tiempo que se hara el CPU en hacer todos los procesos
-interval = 10 # Intervalo a usar
+interval = 1 # Intervalo a usar
 
 for i in range(initial_procesos):
     llegada = random.randint(1,interval)#Todos los procesos llegan a su tiempo
